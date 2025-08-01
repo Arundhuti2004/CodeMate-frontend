@@ -8,8 +8,8 @@ const Login = () => {
     const [password , setPassword] = useState("");
     const dispatch = useDispatch();
 
-    const handleLogin = async() =>{
-         
+    const handleLogin = async(e) =>{
+           e.preventDefault(); 
         try {
             const res = await axios.post("http://localhost:3000/login" , {
                 emailId,
@@ -31,7 +31,7 @@ const Login = () => {
       <div className="relative z-10 backdrop-blur-md bg-white/10 border border-white/30 text-white rounded-2xl shadow-lg p-8 w-[90%] max-w-md">
         <h2 className="text-3xl font-bold text-center mb-6">Login</h2>
 
-        <form className="space-y-4">
+        <form className="space-y-4 "onSubmit={handleLogin}>
           {/* Email Input */}
           <div className="form-control">
             <input
@@ -64,7 +64,7 @@ const Login = () => {
           </div>
 
           {/* Login Button */}
-          <button type="submit" className="btn btn-primary w-full" onClick={handleLogin}>
+          <button type="submit" className="btn btn-primary w-full" >
             Login
           </button>
 
