@@ -1,43 +1,11 @@
-import axios from "axios";
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { addUser } from "../utils/userSlice.js";
-import { useNavigate } from "react-router-dom";
-import {BASE_URL} from "../utils/constants.js"
-import toast , {Toaster} from "react-hot-toast"
+import React from 'react'
+import { useDispatch } from 'react-redux';
 
-const Login = () => {
-    const [emailId , setEmailId] = useState("");
-    const [password , setPassword] = useState("");
+const UserCard = ({user}) => {
+    const {firstName , lastName , photoUrl , age , gender , about , skills }  = user;
     const dispatch = useDispatch();
-    const navigate = useNavigate();
-
-    const handleLogin = async(e) =>{
-           e.preventDefault(); 
-        try {
-            const res = await axios.post(BASE_URL + "/login" , {
-                emailId,
-                password,
-            },{withCredentials : true});
-            console.log(res.data.user);
-            dispatch(addUser(res.data.user));
-            toast.success("Login Successful");
-            setTimeout(() => {
-              return navigate("/");
-            } , 1000);
-            
- 
-        } catch (error) {
-            console.log(error);
-            const errorMessage = error.response?.data?.message || "Login failed ❌";
-    
-
-            toast.error(errorMessage);
-            
-        }
-    }
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-blue-950 to-cyan-900 relative overflow-hidden">
+   <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-blue-950 to-cyan-900 relative overflow-hidden">
       <Toaster position="top-center" reverseOrder={false} />
       {/* Optional background layer */}
       <div className="absolute inset-0 bg-[url('https://media.istockphoto.com/id/958259766/photo/robot-with-education-hud.jpg?s=2048x2048&w=is&k=20&c=wyk_jC-bIzo7eYnkZIxiXwFfFR7C9N5zdhFts0FY5HM=')] bg-cover bg-center opacity-20 z-0"></div>
@@ -89,7 +57,7 @@ const Login = () => {
         </form>
       </div>
     </div>
-  );
+  )
 }
 
-export default Login;
+export default UserCard
