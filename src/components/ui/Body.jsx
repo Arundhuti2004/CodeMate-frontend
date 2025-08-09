@@ -2,9 +2,9 @@ import React, { useEffect } from "react";
 import NavBar from "./NavBar";
 import Footer from "./Footer";
 import { Outlet, useNavigate } from "react-router-dom";
-import { addUser } from "../utils/userSlice";
+import { addUser } from "../../utils/userSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { BASE_URL } from "../utils/constants";
+import { BASE_URL } from "../../utils/constants";
 import axios from "axios";
 
 const Body = () => {
